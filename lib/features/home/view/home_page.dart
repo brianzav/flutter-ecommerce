@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_app/features/counter/cubit/counter_cubit.dart';
+import 'package:my_app/features/home/cubit/home_cubit.dart';
 import 'package:my_app/l10n/l10n.dart';
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CounterCubit(),
-      child: const CounterView(),
+      create: (_) => HomeCubit(),
+      child: const HomeView(),
     );
   }
 }
 
-class CounterView extends StatelessWidget {
-  const CounterView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class CounterView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().increment(),
+            onPressed: () => context.read<HomeCubit>().increment(),
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().decrement(),
+            onPressed: () => context.read<HomeCubit>().decrement(),
             child: const Icon(Icons.remove),
           ),
         ],
@@ -49,7 +49,7 @@ class CounterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final count = context.select((CounterCubit cubit) => cubit.state);
+    final count = context.select((HomeCubit cubit) => cubit.state);
     return Text('$count', style: theme.textTheme.displayLarge);
   }
 }

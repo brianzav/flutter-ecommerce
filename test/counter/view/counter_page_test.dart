@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:my_app/features/counter/cubit/counter_cubit.dart';
-import 'package:my_app/features/counter/view/counter_page.dart';
+import 'package:my_app/features/home/cubit/home_cubit.dart';
+import 'package:my_app/features/home/view/home_page.dart';
 
 import '../../helpers/helpers.dart';
 
-class MockCounterCubit extends MockCubit<int> implements CounterCubit {}
+class MockCounterCubit extends MockCubit<int> implements HomeCubit {}
 
 void main() {
   group('CounterPage', () {
     testWidgets('renders CounterView', (tester) async {
-      await tester.pumpApp(const CounterPage());
-      expect(find.byType(CounterView), findsOneWidget);
+      await tester.pumpApp(const HomePage());
+      expect(find.byType(HomeView), findsOneWidget);
     });
   });
 
   group('CounterView', () {
-    late CounterCubit counterCubit;
+    late HomeCubit counterCubit;
 
     setUp(() {
       counterCubit = MockCounterCubit();
@@ -31,7 +31,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const CounterView(),
+          child: const HomeView(),
         ),
       );
       expect(find.text('$state'), findsOneWidget);
@@ -44,7 +44,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const CounterView(),
+          child: const HomeView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.add));
@@ -58,7 +58,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const CounterView(),
+          child: const HomeView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.remove));
