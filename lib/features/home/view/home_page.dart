@@ -92,7 +92,7 @@ class CategoriasView extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 15,
               itemBuilder: (BuildContext context, int index) => const Card(
-                child: Center(child: Text('Categoria')),
+                child: Center(child: Text('Dummy Card Text')),
               ),
             ),
           ),
@@ -103,38 +103,46 @@ class CategoriasView extends StatelessWidget {
 }
 
 class PromocoesView extends StatelessWidget {
-  const PromocoesView({super.key});
+  const PromocoesView({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Text(
-              'Promoções',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) => const Card(
-                  child: Center(child: Text('Promoção')),
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text(
+            'Promoções',
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(
+            height: 100,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: 2, // Agregaremos solo 2 imágenes
+              itemBuilder: (BuildContext context, int index) => Card(
+                child: Column(
+                  children: [
+                    Image.asset(
+                        'assets/img/p2.png'), // Agrega la primera imagen
+                    Image.asset(
+                        'assets/img/p3.png'), // Agrega la segunda imagen
+                  ],
                 ),
               ),
             ),
-          ]),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class CounterText extends StatelessWidget {
-  const CounterText({super.key});
+  const CounterText({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
