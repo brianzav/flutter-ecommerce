@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Busca',
+            label: 'Buscar',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
@@ -92,7 +92,7 @@ class CategoriasView extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 15,
               itemBuilder: (BuildContext context, int index) => const Card(
-                child: Center(child: Text('Dummy Card Text')),
+                child: Center(child: Text('Categoria')),
               ),
             ),
           ),
@@ -110,26 +110,25 @@ class PromocoesView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Promoções',
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            height: 100,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: 15,
-              itemBuilder: (BuildContext context, int index) => const Card(
-                child: Center(child: Text('Dummy Card Text')),
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Promoções',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 100,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: 15,
+                itemBuilder: (BuildContext context, int index) => const Card(
+                  child: Center(child: Text('Promoção')),
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ]),
     );
   }
 }
