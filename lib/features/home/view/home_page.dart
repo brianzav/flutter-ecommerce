@@ -53,21 +53,9 @@ class _HomeViewState extends State<HomeView> {
                     url:
                         'https://static-images.ifood.com.br/image/upload/t_medium/pratos/a3e32426-7659-484b-9309-bf3249bcaf62/202106301645_1VSY_i.jpg'),
                 Promotion(
-                    name: 'Hamburguer',
+                    name: 'Lanches',
                     url:
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
-                Promotion(
-                    name: 'Hamburguer',
-                    url:
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
-                Promotion(
-                    name: 'Hamburguer',
-                    url:
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
-                Promotion(
-                    name: 'Hamburguer',
-                    url:
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                        'https://www.circuitodenoticias.com.br/up/img/1621351538864.jpeg'),
                 Promotion(
                     name: 'Hamburguer',
                     url:
@@ -179,6 +167,16 @@ class PromocoesView extends StatelessWidget {
                       width: 100,
                       child: Image.network(
                         promotionList[index].url,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.amber,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Whoops!',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),
