@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/features/home/cubit/home_cubit.dart';
+import 'package:my_app/features/home/promotion.dart';
 import 'package:my_app/l10n/l10n.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,7 +40,49 @@ class _HomeViewState extends State<HomeView> {
       body: SingleChildScrollView(
         child: Column(
           // ignore: prefer_const_literals_to_create_immutables
-          children: [const CategoriasView(), const PromocoesView()],
+          children: [
+            const CategoriasView(),
+            PromocoesView(
+              promotionList: [
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Pizza',
+                    url:
+                        'https://static-images.ifood.com.br/image/upload/t_medium/pratos/a3e32426-7659-484b-9309-bf3249bcaf62/202106301645_1VSY_i.jpg'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+                Promotion(
+                    name: 'Hamburguer',
+                    url:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykY9ZDB3QYHKVYoc5q7yXsFKlT7vtYrs-Mg&usqp=CAU'),
+              ],
+            )
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -103,7 +146,11 @@ class CategoriasView extends StatelessWidget {
 }
 
 class PromocoesView extends StatelessWidget {
-  const PromocoesView({required Key key}) : super(key: key);
+  const PromocoesView({
+    super.key,
+    required this.promotionList,
+  });
+  final List<Promotion> promotionList;
 
   @override
   Widget build(BuildContext context) {
@@ -118,18 +165,30 @@ class PromocoesView extends StatelessWidget {
             style: TextStyle(fontSize: 18),
           ),
           SizedBox(
-            height: 100,
+            height: 200,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 2, // Agregaremos solo 2 imágenes
+              itemCount: promotionList.length,
               itemBuilder: (BuildContext context, int index) => Card(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                        'assets/img/p2.png'), // Agrega la primera imagen
-                    Image.asset(
-                        'assets/img/p3.png'), // Agrega la segunda imagen
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Image.network(
+                        promotionList[index].url,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      promotionList[index].name.toLowerCase(),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -142,7 +201,7 @@ class PromocoesView extends StatelessWidget {
 }
 
 class CounterText extends StatelessWidget {
-  const CounterText({required Key key}) : super(key: key);
+  const CounterText({super.key});
 
   @override
   Widget build(BuildContext context) {
