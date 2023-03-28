@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_app/features/home/category.dart';
 import 'package:my_app/features/home/cubit/home_cubit.dart';
 import 'package:my_app/features/home/promotion.dart';
 import 'package:my_app/l10n/l10n.dart';
@@ -45,7 +45,7 @@ class _HomeViewState extends State<HomeView> {
             CategoriesView(
               categoryList: [
                 Category(
-                    nome: 'Comidas',
+                    name: 'Comidas',
                     url:
                         'https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2019/08/din1135-sustenta5.jpg'),
               ],
@@ -119,7 +119,6 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var url;
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
