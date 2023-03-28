@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/features/home/cubit/home_cubit.dart';
@@ -41,7 +42,14 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const CategoriasView(),
+            CategoriesView(
+              categoryList: [
+                Category(
+                    nome: 'Comidas',
+                    url:
+                        'https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2019/08/din1135-sustenta5.jpg'),
+              ],
+            ),
             PromocoesView(
               promotionList: [
                 Promotion(
@@ -101,11 +109,17 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-class CategoriasView extends StatelessWidget {
-  const CategoriasView({super.key});
+class CategoriesView extends StatelessWidget {
+  const CategoriesView({
+    super.key,
+    required this.categoryList,
+  });
+
+  final List<Category> categoryList;
 
   @override
   Widget build(BuildContext context) {
+    var url;
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -117,13 +131,42 @@ class CategoriasView extends StatelessWidget {
             style: TextStyle(fontSize: 18),
           ),
           SizedBox(
-            height: 100,
+            height: 200,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 15,
-              itemBuilder: (BuildContext context, int index) => const Card(
-                child: Center(child: Text('Dummy Card Text')),
+              itemCount: categoryList.length,
+              itemBuilder: (BuildContext context, int index2) => Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Image.network(
+                        categoryList[index2].url,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.amber,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Whoops!',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      categoryList[index2].name.toLowerCase(),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -195,16 +238,5 @@ class PromocoesView extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class CounterText extends StatelessWidget {
-  const CounterText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final count = context.select((HomeCubit cubit) => cubit.state);
-    return Text('$count', style: theme.textTheme.displayLarge);
   }
 }
