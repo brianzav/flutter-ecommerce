@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/features/home/category.dart';
+import 'package:my_app/features/home/category_view.dart';
 import 'package:my_app/features/home/cubit/home_cubit.dart';
 import 'package:my_app/features/home/promotion.dart';
+import 'package:my_app/features/home/view/promocoes_view.dart';
 import 'package:my_app/l10n/l10n.dart';
 
 class HomePage extends StatelessWidget {
@@ -107,137 +109,6 @@ class _HomeViewState extends State<HomeView> {
         selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-      ),
-    );
-  }
-}
-
-class CategoriesView extends StatelessWidget {
-  const CategoriesView({
-    super.key,
-    required this.categoryList,
-  });
-
-  final List<Category> categoryList;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Categorias',
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            height: 180,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: categoryList.length,
-              itemBuilder: (BuildContext context, int index2) => Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 80,
-                      width: 150,
-                      child: Image.network(
-                        categoryList[index2].url,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: Colors.amber,
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Whoops!',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      categoryList[index2].name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromARGB(255, 71, 75, 80),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class PromocoesView extends StatelessWidget {
-  const PromocoesView({
-    super.key,
-    required this.promotionList,
-  });
-  final List<Promotion> promotionList;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Promoções',
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            height: 150,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: promotionList.length,
-              itemBuilder: (BuildContext context, int index) => Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 150,
-                      child: Image.network(
-                        promotionList[index].url,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: Colors.amber,
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Whoops!',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      promotionList[index].name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromARGB(255, 71, 75, 80),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
